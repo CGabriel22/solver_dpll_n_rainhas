@@ -61,3 +61,16 @@ Use-o para o teste da seguinte forma:
 $ python3 nqueen_checker.py < entrada.txt
 ```
 O verificador retornará no terminal se o resultado é válido ou não.
+
+## Autores <a name="authors"></a>
+<div style="display: flex; gap: 8px">
+
+  <div style="width: 128px; height: 128px; overflow: hidden; border-radius: 50%;">
+    <img src="./collaborators/gabriel.jpeg" alt="Descrição da imagem" style="object-fit: cover; width: 100%; height: 100%;">
+  </div>
+
+  <div style="width: 128px; height: 128px; overflow: hidden; border-radius: 50%;">
+    <img src="./collaborators/icaro.jpeg" alt="Descrição da imagem" style="object-fit: cover; width: 100%; height: 100%;">
+  </div>
+
+</div>
