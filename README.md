@@ -19,7 +19,7 @@ O projeto foi desenvolvido para um trabalho da cadeira de Lógica da computaçã
 
 ## Pré-requisitos <a name="prerequisites"></a>
 - python 3.11 ou superior [Download oficial](https://www.python.org)
-- Testado no Windows 10 e 11
+- Testado no Windows 10, Windows 11 e Linux Satux
 
 ## Construindo o projeto <a name="building"></a>
 Clonando o repositório
