@@ -4,11 +4,11 @@
 import solver
 import time
 
-tempo_inicial = time.time()
+starting_time = time.time()
 
 N = 4
 counter = 1
-clausulas = []
+clauses = []
 mapping_to_int = {}
 mapping_to_int_inv = {}
 positions = [[i, j] for i in range(1, N+1) for j in range(1, N+1)]  # [1, 1] até [N, N]
@@ -24,9 +24,9 @@ for i in range(1, N+1):
     for j in range(1, N+1):
         line.append(mapping_to_int[f"Q_{i}_{j}"])
     solver.add_clause(line)
-    clausulas.append(line)
+    clauses.append(line)
 
-# agora, iremos dicionar as clausulas para garantir que cada coluna tenha no máximo uma rainha
+# agora, iremos dicionar as clauses para garantir que cada coluna tenha no máximo uma rainha
 
 for j in range(1, N+1):
     for i in range(1, N+1):
@@ -36,7 +36,7 @@ for j in range(1, N+1):
             clause = [-mapping_to_int[f"Q_{i}_{j}"], -
                       mapping_to_int[f"Q_{other}_{j}"]]
             solver.add_clause(clause)
-            clausulas.append(clause)
+            clauses.append(clause)
 
 # vamos definir diagonais primarias com no maximo 1 rainha
 
@@ -47,7 +47,7 @@ for diff in range(2 - N, N - 1):
             clause = [-mapping_to_int[f"Q_{a[i][0]}_{a[i][1]}"], -
                       mapping_to_int[f"Q_{a[j][0]}_{a[j][1]}"]]
             solver.add_clause(clause)
-            clausulas.append(clause)
+            clauses.append(clause)
 
 # diagonais secundarias com no maximo 1 rainha
 
@@ -58,49 +58,49 @@ for diff in range(3, N + N):
             clause = [-mapping_to_int[f"Q_{a[i][0]}_{a[i][1]}"], -
                       mapping_to_int[f"Q_{a[j][0]}_{a[j][1]}"]]
             solver.add_clause(clause)
-            clausulas.append(clause)
+            clauses.append(clause)
 
 
-def imprimir_tabuleiro(model):
-    contador = 0
-    tabuleiro = []
+def print_board(model):
+    count = 0
+    board = []
 
-    for i in range(N):
-        linha = []
-        for j in range(N):
-            linha.append('0')
-        tabuleiro.append(linha)
+    for _ in range(N):
+        row = []
+        for _ in range(N):
+            row.append('0')
+        board.append(row)
 
     for i in range(1, N+1):
         for j in range(1, N+1):
             if mapping_to_int[f"Q_{i}_{j}"] in model:
-                tabuleiro[i-1][j-1] = '1'
-                contador += 1
-    for linha in tabuleiro:
-        print(' '.join(linha))
+                board[i-1][j-1] = '1'
+                count += 1
+    for row in board:
+        print(' '.join(row))
 
-    return contador, tabuleiro
+    return count, board
 
 if solver.solve():
 
     print('\nInformações a respeito do DPLL')
-    print('\nClausulas Geradas:',clausulas)
+    print('\nclauses Geradas:',clauses)
     print('\nModelo Gerado:', solver.get_model(), '\n')
 
     model = solver.get_model() #gerar o modelo
 
     print('Informações Sobre o Problema:\n')
-    print(f'Tabuleiro: {N}x{N}\n')
+    print(f'board: {N}x{N}\n')
 
-    rainhas, tabuleiro = imprimir_tabuleiro(model) #gerar o numero de rainhas e abstrair o tabuleiro
+    rainhas, board = print_board(model) #gerar o numero de rainhas e abstrair o board
     print(f'\nQuantidade de Rainhas: {rainhas}')
     
-    tempo_final = time.time()
-    print(f"Tempo de Execução: {tempo_final - tempo_inicial} segundos")
+    ending_time = time.time()
+    print(f"Tempo de Execução: {ending_time - starting_time} segundos")
 
     arq = open('entrada.txt', 'w')
     arq.writelines(f"{rainhas}")
-    for linha in tabuleiro:
-        arq.writelines(f"\n{' '.join(linha)}")
+    for row in board:
+        arq.writelines(f"\n{' '.join(row)}")
 else:
     print("Sem solução")
