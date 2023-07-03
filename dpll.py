@@ -4,25 +4,26 @@
 from solver import Solver
 import time
 
+starting_time = time.time() #tempo de execução
 
-starting_time = time.time()
+#gerando uma instancia do nosso solver (DPLL)
+solver = Solver()
 
+#mapeando os símbolos proposicionais (atomos)
 
-N = 64  #altere aqui o tamanho do tabuleiro
+N = 16 #altere aqui o tamanho do tabuleiro
 counter = 1
 clauses = []
 mapping_to_int = {}
-mapping_to_int_inv = {}
+mapping_to_int_inv = {} #apenas para visualizar, caso deseje
 positions = [[i, j] for i in range(1, N+1) for j in range(1, N+1)]  # [1, 1] até [N, N]
-
-solver = Solver()
-
 for position in positions:
     key = f"Q_{position[0]}_{position[1]}"
     mapping_to_int[key] = counter
     mapping_to_int_inv[counter] = key #apenas para exemplificação
     counter += 1
 
+#cada linha possui pelo menos uma rainha
 for i in range(1, N+1):
     line = []
     for j in range(1, N+1):
@@ -30,8 +31,23 @@ for i in range(1, N+1):
     solver.add_clause(line)
     clauses.append(line)
 
-# agora, iremos dicionar as clauses para garantir que cada coluna tenha no máximo uma rainha
+#cada linha tem no máximo uma rainha
+for i in range(1, N+1):
+    for j in range(1, N):
+        for k in range(j+1, N+1):
+            clause = [-mapping_to_int[f"Q_{i}_{j}"], -mapping_to_int[f"Q_{i}_{k}"]]
+            solver.add_clause(clause)
+            clauses.append(clause)
 
+#cada coluna tem pelo menos uma rainha
+for j in range(1, N+1):
+    column = []
+    for i in range(1, N+1):
+        column.append(mapping_to_int[f"Q_{i}_{j}"])
+    solver.add_clause(column)
+    clauses.append(column)
+
+#cada coluna tem no maximo uma rainha
 for j in range(1, N+1):
     for i in range(1, N+1):
         other_indexes = list(range(1, N+1))
@@ -42,7 +58,6 @@ for j in range(1, N+1):
             clauses.append(clause)
 
 # vamos definir diagonais primarias com no maximo 1 rainha
-
 for diff in range(2 - N, N - 1):
     a = [[i, j] for i in range(1, N+1) for j in range(1, N+1) if i-j == diff]
     for i in range(len(a)):
@@ -52,7 +67,6 @@ for diff in range(2 - N, N - 1):
             clauses.append(clause)
 
 # diagonais secundarias com no maximo 1 rainha
-
 for diff in range(3, N + N):
     a = [[i, j] for i in range(1, N+1) for j in range(1, N+1) if i+j == diff]
     for i in range(len(a)):
@@ -61,7 +75,7 @@ for diff in range(3, N + N):
             solver.add_clause(clause)
             clauses.append(clause)
 
-
+#imprimir o tabuleiro
 def print_board(model):
     queens = 0
     board = []
@@ -82,11 +96,11 @@ def print_board(model):
 
     return queens, board
 
-print('\nInformações a respeito do DPLL')
-print('\nClausulas Geradas:',clauses)
-print('\nModelo Gerado:', solver.get_model(), '\n')
-
 try:
+    print('\nInformações a respeito do DPLL')
+    print('\nClausulas Geradas:',clauses)
+    print('\nModelo Gerado:', solver.get_model(), '\n')
+
     model = solver.get_model() #gerar o modelo
 
     print('Informações Sobre o Problema:\n')
@@ -104,4 +118,4 @@ try:
         arq.writelines(f"\n{' '.join(row)}")
 
 except Exception as Erro:
-    print("Tamanho do Tabuleiro UNSAT")
+    print(f"Erro! Verifique as Cláusulas, o tamanho do tabuleiro {Erro}")
