@@ -11,7 +11,7 @@ solver = Solver()
 
 #mapeando os símbolos proposicionais (atomos)
 
-N = 16 #altere aqui o tamanho do tabuleiro
+N = 4 #altere aqui o tamanho do tabuleiro
 counter = 1
 clauses = []
 mapping_to_int = {}
@@ -117,5 +117,8 @@ try:
     for row in board:
         arq.writelines(f"\n{' '.join(row)}")
 
+    print()
+    print("Foi gerado um arquivo 'entrada.txt' para o verificador 'nqueen_checker.py'")
+
 except Exception as Erro:
-    print(f"Erro! Verifique as Cláusulas, o tamanho do tabuleiro {Erro}")
+    print(f"Erro! Verifique as Cláusulas, ou tamanho do tabuleiro {Erro}")

@@ -19,7 +19,7 @@ O projeto foi desenvolvido para um trabalho da cadeira de Lógica da computaçã
 
 ## Pré-requisitos <a name="prerequisites"></a>
 - python 3.11 ou superior [Download oficial](https://www.python.org)
-- Testado no Windows 10 e 11
+- Testado no Windows 10, 11 e Linux
 
 ## Construindo o projeto <a name="building"></a>
 Clonando o repositório
@@ -29,9 +29,9 @@ $ cd solver_dpll_n_rainhas
 ```
 
 ## Executando o projeto <a name="running"></a>
-Execute o arquivo dpll.py com o python
+Execute o arquivo n_queens.py com o python
 ```bash
-$ python3 dpll.py
+$ python3 n_queens.py
 ```
 Será gerado um arquivo com o resultado do programa. 
 
