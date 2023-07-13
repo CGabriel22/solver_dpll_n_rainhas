@@ -14,9 +14,8 @@ O projeto foi desenvolvido para um trabalho da cadeira de Lógica da computaçã
 6. [Resolução do Problema de Satisfazibilidade com Entrada](#sat-problem)
 7. [Resolução do Problema das N-Rainhas](#queen-problem)
 8. [Testando o resultado](#testing)
-9. [Sobre o a utilização do Solver DPLL no problema das N Rainhas](#dpll-in-n-queen)
-10. [Licença](#license)
-11. [Autores](#authors)
+9. [To-do](#to-do)
+10. [Autores](#authors)
 
 ## Pré-requisitos <a name="prerequisites"></a>
 - python 3.11 ou superior [Download oficial](https://www.python.org)
@@ -153,6 +152,12 @@ Use-o para o teste da seguinte forma:
 $ python3 nqueen_checker.py < entrada.txt
 ```
 O verificador retornará no terminal se o resultado é válido ou não.
+
+## TO-DO <a name="to-do"></a>
+
+- [ ] Criar Licença e Seção Licença
+- [ ] Transformar em Pacote (definir framework [npm provavelmente])
+- [ ] Release Final
 
 ## Autores <a name="authors"></a>
 <div style="display: flex; gap: 8px">
