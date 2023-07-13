@@ -55,6 +55,8 @@ O algoritmo DPLL continua esse processo de busca e simplificação até que uma 
 - Cada cláusula é representada como uma lista de literais, onde cada literal é um número inteiro.
 
 ```python
+from solver import Solver
+
 solver = Solver() #instanciando o solver
 
 solver.add_clause([1, 2, -3]) #adicionando as cláusulas
@@ -94,7 +96,7 @@ Observações
     
 ## Resolução do Problema de Satisfazibilidade com Entrada<a name="sat-problem"></a>
 
-Podemos receber um arquivo de entrada com as fórmulas, através de um arquivo 'exemplo.txt' no seguinte formato: 
+Podemos receber um arquivo de entrada com as fórmulas, através de um arquivo 'exemplo.txt', localizado dentro da pasta "input", no seguinte formato: 
 
 ```txt
 4 3
@@ -164,6 +166,6 @@ O verificador retornará no terminal se o resultado é válido ou não.
 
   <img src="./src/collaborators/gabriel.png" width="128" height="128"/>
   <img src="./src/collaborators/icaro.png" width="128" height="128"/>
-  <img src="./src/collaborators/vini.png" width="128" height="128"/>
+  <img src="./src/collaborators/vinicius.png" width="128" height="128"/>
   
 </div>

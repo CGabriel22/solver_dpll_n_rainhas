@@ -8,7 +8,7 @@ MESMO DIRETORIO ONDE ESTÁ O ARQUIVO 'exemplo.txt'"""
 solver = Solver()
 
 #verificar se o arquivo está de maneira conforme
-with open('exemplo.txt', 'r') as arquivo:
+with open('./input/exemplo.txt', 'r') as arquivo:
 
     num_clausulas_entrada, num_atomos_entrada = map(int, arquivo.readline().split())
     print(f'numero de atomos: {num_atomos_entrada}, numero de clausulas: {num_clausulas_entrada}\n')
