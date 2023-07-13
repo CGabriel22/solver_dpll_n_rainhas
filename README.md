@@ -32,7 +32,7 @@ $ cd solver_dpll_n_rainhas
 O problema das N-Rainhas consiste em elaborar uma solução para que, em um tabuleiro NxN (matriz quadrada) possamos posicionar, sem que se ataquem, a maior quantidade de rainhas possíveis. É um problema clássico e iremos utilizar nosso Solver para resolvê-lo.
 
 <div style="display: flex; gap: 8px">
-  <img src="./src/img/nqueens.png" width="128" height="128"/>
+  <img src="./src/img/nqueens.png"/>
 </div>
 
 ## Sobre o algoritmo DPLL <a name="dpll"></a>
