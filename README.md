@@ -16,7 +16,7 @@ O projeto foi desenvolvido para um trabalho da cadeira de Lógica da computaçã
 8. [Sobre o a utilização do Solver DPLL no problema das N Rainhas](#dpll-in-n-queen)
 9. [Licença](#license)
 10. [Autores](#authors)
-
+11. 
 ## Pré-requisitos <a name="prerequisites"></a>
 - python 3.11 ou superior [Download oficial](https://www.python.org)
 - Testado no Windows 10, 11 e Linux
