@@ -11,7 +11,7 @@ solver = Solver()
 
 #mapeando os símbolos proposicionais (atomos)
 
-N = 4 #altere aqui o tamanho do tabuleiro
+N = 8 #altere aqui o tamanho do tabuleiro
 counter = 1
 clauses = []
 mapping_to_int = {}

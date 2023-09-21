@@ -1,10 +1,12 @@
+from functools import lru_cache
+
 class Solver:
     def __init__(self):
         self.solution, self.clauses = [], []
-
+        
     def add_clause(self, clause):
         self.clauses.append(clause)
-
+    
     def simplify(self, formula):
         while True:
             unit_clause = next((clause[0] for clause in formula if len(clause) == 1), None)
@@ -32,7 +34,7 @@ class Solver:
 
         return False
 
-    @staticmethod
+    @staticmethod #não é possível usar o cache pois operações em listas nao são do tipo hash
     def find_literals(lst):
         if isinstance(lst[0], int):
             positive_list = [abs(number) for number in lst]
@@ -43,7 +45,7 @@ class Solver:
         no_duplicates_list = list(set(positive_list))
         return no_duplicates_list
 
-    @staticmethod
+    @staticmethod #não é possível usar o cache pois operações em listas nao são do tipo hash
     def check_missing_values(l1, l2):
         missing_values = []
 
@@ -53,6 +55,7 @@ class Solver:
 
         return missing_values
 
+    @lru_cache
     def get_model(self):
         result = self.dpll(self.clauses)
         if not result:
